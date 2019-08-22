@@ -1,6 +1,5 @@
 package view;
-import java.lang.StringBuilder;
-import java.util.ArrayList;
+
 public class View {
 
 	public void StartMenu() {

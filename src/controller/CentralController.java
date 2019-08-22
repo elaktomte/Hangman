@@ -1,13 +1,13 @@
 package controller;
-import model.WordList;
-import model.HighScore;
-
-import view.View;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.HighScore;
+import model.WordList;
+import view.View;
 
 public class CentralController {
 	View view = new View();
@@ -25,12 +25,12 @@ public class CentralController {
 	}
 
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		CentralController controller;
 		hs = new HighScore();
 		controller = new CentralController();
 		controller.Start();
-		
+
 
 
 	}
@@ -87,24 +87,25 @@ public class CentralController {
 		Long timer = System.currentTimeMillis();
 		while (guesses <8) {
 			String input = scanner.next();
+
 			if (input.equalsIgnoreCase("00")) {
 				Start();
 				break;
 			} else {
 				Guess(input);
-
 				totalFound = 0;
+				
 				for (int i = 0; i < hidden.length; i++ ) {
 					if (hidden[i] == true) {
 						totalFound++;
 					}
 				}
+				
 				if (totalFound == hidden.length) {
 					//Victory
 					break;
 				}
 			}
-			
 		}
 		if (guesses < 8) {
 			int Score = (int)(System.currentTimeMillis() - timer)/1000;
@@ -144,6 +145,7 @@ public class CentralController {
 		}
 		if (i == 2) {
 			view.printHighScores(hs.getHighScores());
+			Start();
 		}
 		if (i == 3) { 
 			System.exit(0);
