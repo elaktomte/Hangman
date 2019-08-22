@@ -2,6 +2,8 @@ package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import model.WordList;
@@ -9,7 +11,7 @@ import model.WordList;
 public class WordListTest {
 
 	@Test
-	public void testRandomWord() {
+	public void testRandomWord() throws IOException {
 		/*
 		 * This test verifies that we can get random words. 
 		 * In this test we want to make sure that we can get the same word multiple times.
@@ -28,7 +30,7 @@ public class WordListTest {
 	}
 	
 	@Test
-	public void testRandomWord2() {
+	public void testRandomWord2() throws IOException {
 		/*
 		 * This test is to verify that we can get random words and 
 		 * not just the same word all over.
@@ -54,7 +56,7 @@ public class WordListTest {
 	}
 	
 	@Test
-	public void testAddWord() {
+	public void testAddWord() throws IOException {
 		/*
 		 * This test is to ensure that we can add words to our wordlist
 		 * and have the chance to get them as a random word.
@@ -76,7 +78,7 @@ public class WordListTest {
 	}
 	
 	@Test
-	public void testAddWordPersistance() {
+	public void testAddWordPersistance() throws IOException {
 		/*
 		 * This test is to ensure that the words we add stay
 		 *  even after we shut down the application.

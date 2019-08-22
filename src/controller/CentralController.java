@@ -11,7 +11,6 @@ import view.View;
 
 public class CentralController {
 	View view = new View();
-	WordList list = new WordList();
 	String word;
 	int guesses = 0;
 	boolean[] hidden;
@@ -59,9 +58,10 @@ public class CentralController {
 		}
 		return -1;
 	}
-	public void NewGame() {
+	public void NewGame() throws IOException {
 		view.printString("Good Luck! enter 00 to go back to main menu.");
 		view.Gallows(0);
+		WordList list = new WordList();
 		word = list.randomWord();
 		hidden = new boolean[word.length()];
 		view.printString(BuildCorrectString(hidden));
@@ -148,10 +148,25 @@ public class CentralController {
 			Start();
 		}
 		if (i == 3) { 
+			System.out.println("What word do you wish to add?  Write 00 to return to main menu");
+			Scanner scan = new Scanner(System.in);
+			String word = scan.nextLine();
+			if(word.equalsIgnoreCase("00")) {
+				this.Start();
+			}
+			else {
+				WordList list = new WordList();
+				list.addWord(word);
+				//scan.close();  Throws exception for some reason.
+				this.Start();
+			}
+			
+		}
+		if (i == 4) { 
 			System.exit(0);
 		}
 		else {
-
+			this.Start();
 		}
 	}
 	public void Guess(String w) {
